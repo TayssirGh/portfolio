@@ -31,6 +31,7 @@ ul {
 }
 
 .primary-button a {
+  margin-top: 40px;
   display: inline-block;
   background-color: #fa5252;
   color: #fff;
