@@ -353,6 +353,19 @@ ul {
 	color: #fff;
 	margin-bottom: 25px;
 }
+.home-content .left-text span {
+  display: inline-block;
+  background: linear-gradient(
+          100deg,
+          #fa5252 1%,
+          #fa5252 2.5%,
+          #fa5252 5.7%,
+          #fa5252 93%,
+          #fa5252 95%,
+          #da6767 98%
+  ),
+  linear-gradient(182deg, #ffafd400, #ffafd44d 8%, #ffafd400 15%);
+}
 
 .home-content .right-image {
 	float: right;
