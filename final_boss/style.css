@@ -14,11 +14,11 @@ html, body {
   height: 100%;
   overflow: hidden; /* 🚫 prevents scrollbars */
 }
-.game-container { 
-    position: relative; 
-    width: 100vw; 
-    height: 100vh; 
-    overflow: hidden; 
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
     text-align: center;
 }
 /* Avatar setup */
@@ -55,30 +55,30 @@ html, body {
     background-image: url('../assets/background_final.png');
     z-index: 0;
     bottom: var(--path-height);
-    height: calc(100vh - var(--path-height)); 
-    background-size: auto 100%; 
+    height: calc(100vh - var(--path-height));
+    background-size: auto 100%;
 }
 
 #bg-hills {
     background-image: url('../assets/hills_final.png');
     z-index: 0;
     bottom: calc(var(--path-height) - 2px);
-    height: 300px; 
+    height: 300px;
 }
 
 #bg-stone {
-    background-image: url('../assets/stone_path.png');
+    background-image: url('../assets/stone_ice.png');
     z-index: 1;
     bottom: 0;
-    top: calc(100% - var(--path-height));   
-    background-position: 0 top; 
+    top: calc(100% - var(--path-height));
+    background-position: 0 top;
 }
 
 #bg-grass {
     background-image: url('../assets/grass_final.png');
-    z-index: 1; 
+    z-index: 1;
     bottom: 0;
-    height: 300px; 
+    height: 300px;
 }
 
 .ground {
@@ -87,7 +87,7 @@ html, body {
     left: 0;
     width: 200%;
     height: var(--path-height);
-    background: #785C3E; 
+    background: #785C3E;
     z-index: 1;
 }
 /* Avatar positioning (already exists) — keep as is */

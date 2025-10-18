@@ -144,7 +144,7 @@ html, body {
 }
 
 #bg-stone {
-  background-image: url('../assets/stone_path.png');
+  background-image: url('../assets/stone_ice.png');
   z-index: 1;
   bottom: 0;
   top: calc(100% - var(--path-height));
