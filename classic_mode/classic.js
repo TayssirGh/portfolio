@@ -34,70 +34,104 @@ homeBtn.addEventListener('click', () => {
 const bookPageImg = document.getElementById('book-page');
 const bookLeft = document.getElementById('book-left');
 const bookRight = document.getElementById('book-right');
+const bookContainer = document.getElementById('book-page');
 
 let currentPageIndex = 0;
 
 // Example projects array
 const projects = [
-  // {
-  //   id: 'jelly1',
-  //   title: 'Gdoura, the autonomous line follower robot',
-  //   description: 'A self-navigating robot designed to follow lines with precision.',
-  //   unlocked: false,  // set true if you want them visible immediately
-  //   unlockedImg: '../assets/projects/gdoura_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git: true,
-  //   github_link: "https://github.com/TamaGo-HQ/gdoura_robot"
-  // },
-  // {
-  //   id: 'board2',
-  //   title: 'Internship 1',
-  //   description: 'Mechatronics internship at ASQII...',
-  //   unlocked: true,
-  //   unlockedImg: '../assets/projects/agitathor_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git: true,
-  //       github_link:"https://github.com/TamaGo-HQ/medical-vials-agitator"
-  // },
-  // {
-  //   id: 'jelly2',
-  //   title: 'Sortify, the waste sorting bin',
-  //   description: 'An AI-powered bin that automatically identifies and sorts recyclables.',
-  //   unlocked: true,
-  //   unlockedImg: '../assets/projects/sortify_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git: true,
-  //       github_link: "https://github.com/TamaGo-HQ/sortify-stm32"
-  // },
-  // {
-  //   id: 'board3',
-  //   title: 'Internship 2',
-  //   description: 'Embedded software internship at ASQII...',
-  //   unlocked: true,
-  //   unlockedImg: '../assets/projects/cpm_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git: true,
-  //       github_link:"https://github.com/TamaGo-HQ/chemo_drug_prep_machine"
-  // },
-  // {
-  //   id: 'jelly3',
-  //   title: 'Cave CPU',
-  //   description: 'An 8-bit CPU I designed from scratch on LogicIM.',
-  //   unlocked: true,
-  //   unlockedImg: '../assets/projects/cavecpu_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git: true,
-  //       github_link: "https://github.com/TamaGo-HQ/cave_cpu"
-  // },
-  // {
-  //   id: 'board4',
-  //   title: 'Internship 3',
-  //   description: 'SCADA Engineering Internship at JFK Integration...',
-  //   unlocked: true,
-  //   unlockedImg: '../assets/projects/martin_popup.png',
-  //   lockedImg: '../assets/projects/locked.png',
-  //   has_git : false
-  // }
+  {
+    id: 'jelly1',
+    title: 'Mozmoz bash treasure',
+    description: '',
+    unlocked: false,  // set true if you want them visible immediately
+    unlockedImg: '../assets/projects/project1.png',
+    lockedImg: '../assets/projects/locker.png',
+    has_git: false,
+    github_link: ""
+  },
+  {
+    id: 'board3',
+    title: 'Parse2Hire',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project3.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git: true,
+    github_link:"https://github.com/TayssirGh/Parse2Hire"
+  },
+  {
+    id: 'board4',
+    title: 'Comwork challenge',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project5.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git : true,
+    github_link: "https://github.com/TayssirGh/devops-training"
+  },
+  {
+    id: 'jelly3',
+    title: 'Histograph',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project4.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git: true,
+    github_link: "https://github.com/TayssirGh/Histograph"
+  },
+  {
+    id: 'board2',
+    title: '',
+    description: 'Mozmoz bash treasure',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project1.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git: true,
+        github_link:"https://github.com/TayssirGh/mozmoz-bash-treasure"
+  },
+
+  {
+    id: 'board5',
+    title: 'CTS internship',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project6.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git : true,
+    github_link: "https://github.com/TayssirGh/Hashtable-Visualization"
+  },
+  {
+    id: 'jelly2',
+    title: 'Mozmoz Puzzle game',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project2.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git: true,
+    github_link: "https://github.com/TayssirGh/mozmoz-puzzle-game"
+  },
+  {
+    id: 'board6',
+    title: 'PS 1',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project7.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git : true,
+    github_link: "https://github.com/TayssirGh/UTTT-frontEnd"
+  },
+
+  {
+    id: 'final',
+    title: 'final',
+    description: '',
+    unlocked: true,
+    unlockedImg: '../assets/projects/project8.png',
+    lockedImg: '../assets/projects/locked.png',
+    has_git : false,
+    github_link: "https://github.com/TayssirGh"
+  }
 ];
 
 
@@ -134,6 +168,15 @@ function updateBookPage() {
   pageNumber.textContent = `Page ${currentPageIndex + 1} / ${projects.length}`;
 }
 
+bookContainer.addEventListener('click', () => {
+  if (currentPageIndex === projects.length - 1) {
+    console.log("hello")
+    const finalProject = projects[currentPageIndex];
+    if (finalProject.id === 'final' && finalProject.github_link) {
+      window.open(finalProject.github_link, '_blank');
+    }
+  }
+});
 
 // Initialize book to first page
 window.addEventListener('DOMContentLoaded', () => {
