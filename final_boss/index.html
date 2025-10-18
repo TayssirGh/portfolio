@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Boss Battle</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+</head>
+
+
+<!-- FINAL POPUP -->
+<div id="final-popup"  class="popup hidden">
+  <img id="scroll-bg" src="../assets/scroll_frames/frame_001.png">
+<div class="popup-content">
+  <p id = "scroll-text">
+    You found the Sealed Scroll of Opportunity.<br><br>
+    Legend says it must be delivered to <span style="color:#0066cc;">Melek</span>,
+    the engineer who rides the sea turtle.<br><br>
+    Use this scroll to send her a message,
+    and perhaps begin the next adventure together.<br><br>
+    Send it with one of our pigeons:
+  </p>
+
+  <div class="pigeon-links" style="display: flex; justify-content: center; gap: 15px;">
+    <!-- Gmail pigeon -->
+    <a href="mailto:melek.guedidi@insat.ucar.tn" target="_blank">
+      <img src="../assets/pigeons/gmail_pigeon.png" alt="Send Email" width="60">
+    </a>
+
+    <!-- LinkedIn pigeon -->
+    <a href="https://www.linkedin.com/in/tayssir-ghanmi" target="_blank">
+      <img src="../assets/pigeons/linkedin_pigeon.png" alt="LinkedIn" width="60">
+    </a>
+  </div>
+</div>
+
+    <button id="close-popup"
+        style="margin-top: 15px; padding: 8px 12px; font-family: 'Press Start 2P', cursive; cursor: pointer;">
+      Close
+    </button>
+  </div>
+</div>
+
+
+<body>
+  <div class="game-container">
+    <!-- Parallax background layers -->
+    <div id="bg-sky" class="parallax-layer"></div>
+<!--    <div id="bg-hills" class="parallax-layer"></div>-->
+    <div class="ground"></div>
+<!--   <div id="bg-grass" class="parallax-layer"></div>-->
+
+
+    <!-- Avatar -->
+    <div class="avatar">
+      <img id="avatar-img" src="../assets/avatars/grad_avatar.gif" alt="Melek Avatar">
+    </div>
+
+    <!-- Seagull Boss -->
+    <div class="seagull">
+      <img id="seagull" src="../assets/avatars/final_boss_close.png" alt="Villain Seagull">
+    </div>
+    <img id="message-bottle" src="../assets/bottle.png" alt="Message Bottle" style="display:none;">
+  </div>
+
+<!-- Seagull Health Bar -->
+<div class="boss-health-container">
+  <div class="boss-health-bar"></div>
+  <span class="boss-health-text">Seagull HP</span>
+</div>
+
+<!-- Fight Button -->
+<button id="fight-btn">⚔️ FIGHT!</button>
+<!-- Background music -->
+ <audio id="bg-music" src="../assets/sounds/fight_music.mp3"></audio>
+<img id="sound-toggle" src="../assets/icons/sound_off.png" alt="Sound Toggle" class="ui-icon">
+<img id="home-button" src="../assets/icons/home.png" alt="Home" class="ui-icon">
+  <script src="script.js"></script>
+</body>
+</html>

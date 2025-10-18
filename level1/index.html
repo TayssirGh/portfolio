@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Level 1: College</title>
+  <!-- Link to the CSS file in the same folder -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <div class="game-container">
+      <div id="bg-sky" class="parallax-layer"></div>
+<!--      <div id="bg-hills" class="parallax-layer"></div>-->
+
+      <div class="ground"></div>
+      <div id="bg-stone" class="parallax-layer"></div>
+<!--      <div id="bg-grass" class="parallax-layer"></div>-->
+
+      <div id="boards-container"></div> <!-- NEW: board wrapper -->
+
+      <div class="avatar">
+        <img id="avatar" src="../assets/avatars/pre_insat_avatar.gif">
+      </div>
+      <img id="message-bottle" src="../assets/bottle.png" alt="Message Bottle" style="display:none;">
+<div id="seagull-shadow"></div>
+    <div class="seagull">
+      <img id="seagull" src="../assets/avatars/final_boss_close.png" alt="Villain Seagull">
+    </div>
+<div class="hud">
+  <div id="xp-bar">
+    <div id="xp-fill"></div>
+      <span id="xp-text"></span>
+
+</div>
+
+      <!-- Closed Book Icon -->
+      <img id="book-icon" src="../assets/book_closed.png" alt="Book" class="ui-icon">
+
+      <!-- Popup container -->
+      <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <img id="popup-img" src="" alt="project image" class="popup-image">
+            <button id="buildButton" class="popup-build-button">Build</button>
+            <button id="closePopup" class="popup-close-button">✖</button>
+        </div>
+      </div>
+
+      <!-- Book popup -->
+      <div id="book-popup" class="popup hidden">
+        <button id="book-left" class="book-arrow">◀</button>
+        <img id="book-page" src="" alt="Book Page" class="book-image">
+        <button id="book-right" class="book-arrow">▶</button>
+        <button id="book-close" class="popup-close-button">✖</button>
+      </div>
+
+  </div>
+
+<!-- Background music -->
+<audio id="bg-music" src="../assets/sounds/bg_music.mp3" loop></audio>
+
+<!-- Sound toggle button -->
+<img id="sound-toggle" src="../assets/icons/sound_off.png" alt="Sound Toggle" class="ui-icon">
+<img id="home-button" src="../assets/icons/home.png" alt="Home" class="ui-icon">
+
+  <!-- Link to JS file in the same folder -->
+  <script src="script.js"></script>
+</body>
+</html>

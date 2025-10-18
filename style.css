@@ -1,0 +1,161 @@
+
+:root {
+  --path-height: 20vh;
+}
+
+
+/* =====================
+   Body & Homepage Setup
+===================== */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    overflow: hidden;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =====================
+   Game Container & Parallax
+===================== */
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.parallax-layer {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-position: 0 bottom;
+    image-rendering: pixelated;
+}
+
+/* Sky, Hills, Stone, Grass Layers */
+#bg-sky {
+    background-image: url('./assets/background.png');
+    z-index: 0;
+    bottom: var(--path-height);
+    height: calc(100vh - var(--path-height));
+    background-size: auto 100%;
+}
+
+#bg-hills {
+    background-image: url('assets/hills1.png');
+    z-index: 0;
+    bottom: var(--path-height);
+    height: 300px;
+}
+
+#bg-stone {
+    background-image: url('./assets/stone_path.png');
+    z-index: 1;
+    bottom: 0;
+    top: calc(100% - var(--path-height));
+    background-position: 0 top;
+}
+
+#bg-grass {
+    background-image: url('./assets/grass.png');
+    z-index: 1;
+    bottom: 0;
+    height: 300px;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: var(--path-height);
+    background: #4b0519;
+    z-index: 1;
+}
+
+/* =====================
+   Homepage Container
+===================== */
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* above parallax layers */
+}
+
+/* =====================
+   Game Title & Avatar
+===================== */
+.game-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.avatar img {
+    width: 128px;
+    image-rendering: pixelated;
+    margin-bottom: 20px;
+}
+
+/* =====================
+   Retro Buttons
+===================== */
+.home-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 3px solid white;
+    background: black;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.home-btn:hover {
+    background: white;
+    color: black;
+}
+
+.home-btn:disabled {
+    background: #222;
+    color: #555;
+    border-color: #555;
+    cursor: not-allowed;
+}
+
+.ui-icon {
+  position: fixed;
+  top: 15px;        /* left for home, right for sound */
+  width: 70px;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.ui-icon:hover {
+  transform: scale(1.1);
+}
+/* home button on the left */
+#home-button {
+  left: 15px;
+}
+
+/* sound button to the right of home button */
+#sound-toggle {
+  left: 100px;  /* 15px margin + 40px width + 10px spacing */
+  top: 10px;
+}

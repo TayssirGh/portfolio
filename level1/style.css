@@ -1,0 +1,529 @@
+/* Reset defaults */
+
+:root {
+  --path-height: 20vh;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* 🚫 prevents scrollbars */
+}
+/* Avatar setup */
+.avatar img {
+  position: absolute;
+  bottom: var(--path-height);
+  left: 25%;
+  transform: translateX(-50%);
+  width: 128px;
+  image-rendering: pixelated;
+  z-index: 9;
+}
+#avatar {
+    transition: transform 0.1s; /* smooth flip */
+    image-rendering: pixelated; /* keeps pixels sharp */
+}
+
+#avatar.flipped {
+    transform: scaleX(-1); /* mirror horizontally */
+}
+
+/*This gives a gentle hover “pulse”
+ makes clicking them feel interactive.*/
+.jelly {
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 4;
+}
+.jelly:hover {
+  transform: scale(1.1);
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: var(--path-height);
+  background: #4b2e05; /* earthy brown */
+  z-index: 1;
+}
+
+/* Game container setup */
+.game-container {
+  /* background: url('../assets/background.png') repeat-x top center; /* repeat horizontally */
+  /* background-size: auto calc(100% - var(--path-height)); keep height correct, width auto */
+  position: relative;
+  color: white;
+  font-family: 'Press Start 2P', cursive; /* Retro font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* fills the screen height exactly */
+  width: 100vw;   /* fills the screen width exactly */
+  position: relative;
+  overflow: hidden; /* hides anything outside game area */
+}
+
+
+
+
+#boards-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 4; /* higher than hills/grass */
+}
+
+.milestone-board {
+  position: absolute;
+  width: 96px;
+  image-rendering: pixelated;
+  z-index: 4; /* ensure they stay above parallax layers */
+}
+
+
+/* Info bubble */
+.info-bubble {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  padding: 8px;
+  background: url('../assets/info_bubble.png') no-repeat center center;
+  background-size: 100% 100%;
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  z-index: 8; /* above boards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bubble button (now independent) */
+.bubble-button {
+  position: absolute;    /* absolute so we can place it near bubble */
+  z-index: 8;            /* above bubble */
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #fff;
+  background-color: #000;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.bubble-button:hover {
+  background-color: #222;
+  border-color: #ff0;
+}
+
+.parallax-layer {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  background-repeat: repeat-x;
+  background-position: 0 bottom;
+  image-rendering: pixelated;
+}
+
+#bg-sky {
+  background-image: url('../assets/background.png');
+  z-index: 0;
+  bottom: var(--path-height);
+  height: calc(100vh - var(--path-height)); /* fills space above path */
+  background-size: auto 100%;  /* scale height to div, keep width auto */
+}
+
+#bg-hills {
+  background-image: url('../assets/hills1.png');
+  z-index: 0;
+  bottom: var(--path-height);
+  height: 300px; /* adjust to match your hills image height */
+}
+
+#bg-stone {
+  background-image: url('../assets/stone_path.png');
+  z-index: 1;
+  bottom: 0;
+  top: calc(100% - var(--path-height));
+  background-position: 0 top; /* top of image at top of div */
+}
+
+#bg-grass {
+  background-image: url('../assets/grass.png');
+  z-index: 1;
+  bottom: 0;
+  height: 300px; /* adjust to match grass image height */
+}
+
+/* XP HUD */
+.hud {
+  z-index: 100;
+}
+/* XP Bar Frame */
+#xp-bar {
+  position: fixed;
+  z-index: 60;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 20px;
+  border: 2px solid gold;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  overflow: hidden;
+}
+
+/* XP Fill (dynamic part) */
+#xp-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff66, #00ccff);
+  border-radius: 8px;
+  transition: width 0.6s ease-in-out;
+}
+#xp-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P", monospace;
+  color: gold;
+  font-size: 0.7rem;
+  pointer-events: none; /* so clicks go through */
+  text-shadow: 1px 1px 2px #000;
+}
+
+
+/* When XP increases, temporarily glow */
+@keyframes xpGlow {
+  0% { box-shadow: 0 0 10px 2px #00ffcc; }
+  50% { box-shadow: 0 0 20px 5px #00ffcc; }
+  100% { box-shadow: 0 0 10px 2px #00ffcc; }
+}
+
+.glow-effect {
+  animation: xpGlow 0.8s ease;
+}
+
+/* Closed book icon in bottom-right corner */
+#book-icon {
+  position: fixed;
+  right: 20px;
+  width: 100px;           /* adjust size as needed */
+  height: auto;
+  cursor: pointer;
+  z-index: 11;           /* above everything else */
+  image-rendering: pixelated;
+  transition: transform 0.2s;
+}
+
+.closed-book:hover {
+  transform: scale(1.1); /* small hover “pop” effect */
+}
+
+
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex; /* always flex */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  font-family: 'Press Start 2P', cursive;
+  opacity: 0;           /* initially hidden */
+  pointer-events: none;  /* cannot click */
+  transition: opacity 0.2s ease;
+}
+
+.popup.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.popup-content {
+width: 900px;             /* or adjust for your scroll's natural width */
+  height: auto;             /* let height scale naturally based on content */
+  max-height: 80vh;         /* optional: limits height to viewport */
+  padding: 40px 20px;       /* leave space inside scroll for text/images */
+  text-align: center;
+  box-sizing: border-box;   /* ensures padding doesn't overflow container */
+  position: relative;       /* needed if we do overlays or inner div */
+  color: #222;
+}
+
+.popup-image {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+.popup-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+/* Position Build button relative to the image */
+.popup-build-button {
+  position: absolute;
+  left: 50%;      /* adjust this to place it on the right page */
+  bottom: 10px;    /* adjust this to match your desired spot */
+  transform: translate(-50%, 0);
+  transition: transform 0.1s, background-color 0.2s;
+  image-rendering: pixelated;
+
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.popup-build-button.active {
+  background-color: #00c853;
+ cursor: pointer;
+}
+
+.popup-build-button.active:hover {
+  background-color: #00e676;
+  transform: translate(-50%, -2px);
+}
+
+.popup-build-button.inactive {
+  background-color: #555;
+  box-shadow: 0 4px 0 #333;
+  cursor: not-allowed;
+  color: #ddd;
+}
+
+.popup-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #e74c3c; /* arcade red */
+  border: 2px solid #fff;
+  border-radius: 50%;       /* circular button */
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+  transition: transform 0.1s, background-color 0.2s;
+}
+.popup-close-button:hover {
+  background-color: #c0392b; /* darker red on hover */
+  transform: scale(1.2);      /* arcade “pop” effect */
+}
+
+.popup-inner {
+  background: #fff;
+  color: #222;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: center;
+}
+
+#book-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#book-popup.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.book-image {
+  width: 900px; /* adjust for your book image */
+  image-rendering: pixelated;
+}
+
+
+.book-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: opacity 0.3s;
+}
+
+
+
+/* Optional: page number style */
+#book-page-number {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: white;
+}
+
+#book-left { left: 20px; }
+#book-right { right: 20px; }
+
+/* XP popup */
+.xp-popup {
+  position: absolute;
+  font-size: 16px;
+  color: gold;
+  font-weight: bold;
+  opacity: 1;
+  pointer-events: none;
+  animation: xp-rise 1s ease-out forwards;
+  z-index: 100;
+}
+
+@keyframes xp-rise {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-50px); opacity: 0; }
+}
+
+/* Button glow effect */
+.build-glow {
+  animation: glow 0.6s ease-in-out;
+}
+
+@keyframes glow {
+  0%   { box-shadow: 0 0 0px gold; }
+  50%  { box-shadow: 0 0 15px gold; }
+  100% { box-shadow: 0 0 0px gold; }
+}
+.ui-icon {
+  position: fixed;
+  top: 15px;        /* left for home, right for sound */
+  width: 70px;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.ui-icon:hover {
+  transform: scale(1.1);
+}
+/* home button on the left */
+#home-button {
+  left: 15px;
+}
+
+/* sound button to the right of home button */
+#sound-toggle {
+  left: 100px;  /* 15px margin + 40px width + 10px spacing */
+  top: 10px;
+}
+@keyframes graduateWave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.graduate-animation {
+  animation: graduateWave 1s ease-in-out infinite;
+}
+
+.jellyfish {
+  width: 40px;
+  height: 40px;
+  background-image: url('../assets/jelly.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* #message-bottle {
+  width: 150px;
+  height: auto;
+  display: none;
+  position: absolute;
+  z-index: 20;
+  opacity: 0;
+} */
+
+#message-bottle.glow {
+  animation: scrollGlow 1.5s infinite alternate;
+}
+
+@keyframes scrollGlow {
+  from { filter: drop-shadow(0 0 2px #ffd700); }
+  to { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
+/* gentle floating animation */
+#message-bottle.float {
+  animation: floatUpDown 3s ease-in-out infinite, scrollGlow 1.5s infinite alternate;
+}
+
+@keyframes floatUpDown {
+  0% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+  100% { transform: translate(-50%, -50%) translateY(0); }
+}
+#seagull-shadow {
+  position: absolute;
+  bottom: var(--path-height);
+  left: -150px; /* start off-screen left */
+  width: 150px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  filter: blur(5px);
+  z-index: 15;
+  transition: left 5s linear, opacity 1s ease;
+}
+#seagull {
+  position: absolute;
+  width: 350px;
+  bottom: 55%;
+  right: -400px; /* start off-screen right */
+  image-rendering: pixelated;
+  z-index: 26;
+  transition: left 2s ease-out, top 2s ease-out; /* animate left/top */
+}
+
+#message-bottle {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  z-index: 25;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}

@@ -1,0 +1,681 @@
+
+:root {
+  --completed-green: #00cc66; /* same as training log */
+}
+
+/* Reset and base look */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #e8dcc0; /* soft parchment-like tone */
+  font-family: 'Press Start 2P', monospace; /* if you want pixel font */
+  color: #2b2118;
+  overflow-x: hidden;
+}
+
+#scroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-page {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../assets/open_book.png') no-repeat center/contain;
+  background-size: 100% 80vh;
+  background-position: center;
+  scroll-snap-align: start;
+  animation: fadeIn 1s ease forwards;
+}
+
+.left-page,
+.right-page {
+  width: 48%;
+  height: 100%;
+  padding: 1rem;
+}
+
+/* Optional: nice scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+.book-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  height: 70%;
+  margin: auto;
+  padding-top: 3%;
+font-size: 0.8rem;
+}
+
+.book-left, .book-right {
+  width: 48%;
+}
+
+.book-left {
+  text-align: center;
+}
+/* --------------page 1--------------- */
+#page-1 {
+  display: flex;              /* make it a flex container */
+  justify-content: center;    /* center horizontally */
+  align-items: center;        /* center vertically */
+  flex-direction: column;     /* optional, stack children vertically */
+  width: 100%;
+  height: 100vh;              /* fill viewport height */
+  text-align: center;         /* center text inside children */
+}
+
+#sprite {
+  width: 50%;
+  max-width: 400px;
+  height: auto;
+  image-rendering: pixelated;
+  margin-bottom: 1rem;
+}
+.bio{
+    font-size: clamp(10px, 0.85vw, 16px); /* text scales */
+    margin-bottom: 1em;
+  }
+.status-bars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Press Start 2P", monospace; /* pixel look */
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.status {
+  width: 60px;
+  text-align: right;
+  font-weight: bold;
+  color: #2b2118;
+  font-size: 0.7rem;
+}
+
+/* Pixel-style container like skill bars */
+.bar-container {
+  position: relative;
+  width: clamp(150px, 25vw, 300px);  /* bar grows with screen size */
+  height: clamp(20px, 3vw, 25px);    /* bar height scales */
+  background: #2b2118;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(10px, 0.5vw, 16px); /* text scales */
+  /* font-weight: bold; */
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  transition: width 0.4s ease;
+
+  display: flex;           /* make it a flex container */
+  align-items: center;     /* vertically center content */
+  justify-content: center; /* horizontally center content */
+  font-size: inherit;      /* inherit the font size from parent */
+}
+
+.hp { background: #e63946; }        /* red HP fill */
+.mana { background: #1d3557; }      /* blue Mana fill */
+
+/* Optional: text inside bar (like “Level x/10”) */
+.bar-container::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 0.55rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+
+.char-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  gap: 0.5rem;
+  font-family: "Press Start 2P", monospace;
+    font-size: clamp(10px, 0.85vw, 16px); /* text scales */
+}
+
+.book-page h2 {
+  text-align: center;          /* center horizontally */
+  font-family: 'Press Start 2P', monospace; /* pixel-art font */
+  font-weight: bold;
+  font-size: clamp(14px, 2vw, 24px); /* responsive size */
+  color: #2b2118;
+  margin-bottom: clamp(20px, 3vw, 40px); /* responsive bottom spacing */
+  text-shadow: 1px 1px #fff;   /* optional retro/pixel contrast */
+}
+
+.book-right h3 {
+  margin-bottom: 0.5rem;
+}
+
+.book-right p {
+  line-height: 1.5;
+}
+/* ------------------------------------------------------ */
+
+/* ----------------------------
+   TOOLS GRID
+---------------------------- */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 20%, 120px), max-content));
+  gap: clamp(15px, 3vw, 35px);
+  justify-content: center; /* centers the grid when items don’t fill the row */
+  align-items: center;
+}
+
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  background-color: #E0A87B;
+  /* border: 3px solid #625050; */
+  border-radius: 15%;
+}
+
+.tool-item img {
+  width: clamp(40px, 8vw, 70px);   /* icon scales with viewport */
+  height: clamp(40px, 8vw, 70px);
+  image-rendering: pixelated;
+  transition: transform 0.2s;
+  padding: 5px;
+}
+
+.tool-item span {
+  font-size: clamp(10px, 1.5vw, 16px);
+  color: #333;
+  text-align: center;
+}
+
+/* hover effect */
+.tool-item img:hover {
+  transform: scale(1.1);
+}
+
+.tool-desc {
+  margin-top: clamp(20px, 5vw, 40px);
+  text-align: center;
+  font-size: clamp(10px, 1.5vw, 16px);
+  line-height: 1.6;
+}
+
+/* Optional: For very narrow screens, reduce grid columns and gaps */
+@media (max-width: 500px) {
+  .tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 15px;
+  }
+}
+
+
+/* ----------------------------
+   SKILLS LIST
+---------------------------- */
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center; /* center all skill-items horizontally */
+  justify-content: center;
+}
+
+.skill-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: left; /* center the content inside each skill-item */
+}
+
+
+.skill-item img {
+  width: clamp(10px, 8vw, 40px);   /* min 40px, max 70px, scales with viewport */
+  height: clamp(10px, 8vw, 40px);
+  image-rendering: pixelated;
+}
+
+.skill-name {
+  font-size: clamp(10px, 1.5vw, 16px); /* text scales */
+  display: block;
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+
+/* The text and bar grouped together in a column */
+.skill-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.skill-bar {
+  position: relative;
+  width: clamp(150px, 25vw, 300px);  /* bar grows with screen size */
+  height: clamp(20px, 3vw, 25px);    /* bar height scales */
+  background: #2b2118;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(10px, 0.5vw, 16px); /* text scales */
+  /* font-weight: bold; */
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  overflow: hidden;
+}
+
+.skill-bar span {
+  position: relative;       /* make text sit above .skill-level */
+  z-index: 2;
+}
+
+.skill-level {
+  position: absolute;       /* behind the text */
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--completed-green);
+  z-index: 1;
+}
+
+/* ----------------------------
+   QUEST LOG / INTERNSHIPS TIMELINE
+---------------------------- */
+.quest-log {
+  position: relative;
+  padding-left: 30px;
+}
+
+.quest-log::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 3px;
+  height: 100%;
+  background: #00cc66;
+}
+
+.quest-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.3rem;
+}
+
+.quest-item::before {
+  content: '✔';
+  position: absolute;
+  left: -28px; /* your adjustment for alignment */
+  top: 0;
+  width: 20px;  /* smaller, pixel-art scale */
+  height: 20px;
+  background-color: var(--completed-green);
+  color: white;font-size: 0.75rem;  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  image-rendering: pixelated;
+}
+
+
+
+.quest-content {
+  margin-left: 20px;
+  line-height: 1.6;
+}
+
+.quest-dates {
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.quest-title {
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #222;
+}
+
+.quest-location {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+
+/* ----------------------------
+   TRAINING LOG / ACADEMIC JOURNEY
+---------------------------- */
+.training-log {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+  text-align: center;
+}
+
+.training-item {
+  padding: 0.5rem 0;
+  border: none;
+  background: none;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.training-degree {
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.training-university {
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.training-date {
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 0.4rem;
+}
+
+.training-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #2ecc71;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  image-rendering: pixelated;
+  margin-top: 0.3rem;
+  border: 3px solid #fff;
+}
+
+
+/* ------------------------------
+   TROPHY PAGE CONTAINER
+------------------------------ */
+/* ----------------------------------------
+   ACHIEVEMENTS PAGE FIX
+---------------------------------------- */
+#achievements {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background: url('../assets/book_short_page.png') no-repeat center center;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto; /* centers horizontally */
+}
+
+/* Center the title & trophies */
+/* h2 {
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #2b2118;
+  text-shadow: 1px 1px 0 #fff;
+} */
+
+
+#achievements .trophies {
+  display: flex;
+  justify-content: space-between; /* spreads items across the full width */
+  flex-wrap: wrap;
+  width: 80%; /* or 100% if you want them to reach the edges */
+  max-width: 800px; /* optional limit */
+  margin: 0 auto; /* center container */
+}
+/* ------------------------------
+   TROPHIES ROW
+------------------------------ */
+.trophy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keep content top-aligned or use center */
+  gap: 8px;
+  font-size: 10px;
+  color: #333;
+  height: 120px; /* pick a height that fits the tallest trophy text */
+  text-align: center; /* ensure all text is centered */
+}
+
+.trophy-icon {
+  width: clamp(60px, 8vw, 120px);  /* scales but keeps a min/max */
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vw; /* scale the icon/text inside too */
+  background: #ccc;
+  border: 3px solid #999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+
+.trophy-icon img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover; /* make it fill the circle nicely */
+}
+
+.trophy-icon.unlocked {
+  background: gold;
+  border-color: #e0b000;
+  color: white;
+  box-shadow: 0 0 15px gold;
+}
+
+.trophy-icon:hover {
+  transform: scale(1.1);
+}
+.trophy-name {
+  font-size: clamp(8px, 1.2vw, 14px);
+  text-transform: uppercase;
+  text-align: center;        /* center text below coin */
+  max-width: 120px;         /* break long words if needed */
+  line-height: 1.2;          /* a bit of spacing between lines */
+}
+
+/* Subtle fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ui-icon {
+  position: fixed;
+  top: 15px;        /* left for home, right for sound */
+  width: 70px;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.ui-icon:hover {
+  transform: scale(1.1);
+}
+/* home button on the left */
+#home-button {
+  left: 15px;
+}
+
+/* sound button to the right of home button */
+#sound-toggle {
+  left: 100px;  /* 15px margin + 40px width + 10px spacing */
+  top: 10px;
+}
+
+#gmail_pigeon{
+    width: 50px;
+  height: auto;
+    right: 15px
+}
+#linkedin_pigeon{
+    width: 50px;
+  height: auto;
+    right: 100px
+}
+/*  */
+
+.book-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* stack book + page number vertically */
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+/* Container for the book image and its overlay elements (GitHub icon, arrows) */
+.book-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The book image */
+.book-image {
+  width: clamp(600px, 80vw, 1400px);
+  height: auto;
+  image-rendering: pixelated;
+  object-fit: contain;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Left and right arrows */
+.book-arrow {
+  cursor: pointer;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  background: none;
+  border: none;
+  color: #2b2118;
+  transition: transform 0.1s;
+}
+.book-arrow:hover {
+  transform: scale(1.2);
+}
+
+/* Position arrows on sides */
+#book-left {
+  position: absolute;
+  left: -3rem; /* keep arrows fixed even when image changes */
+  top: 50%;
+  transform: translateY(-50%);
+}
+#book-right {
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* GitHub icon overlay */
+.github-link {
+  position: absolute;
+  bottom: 20%;   /* or bottom: 10px, depending on where you want it */
+  left: 15%;
+  width: clamp(24px, 4vw, 40px);
+  height: auto;
+  opacity: 0.9;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.github-link img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.github-link:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Page number */
+.page-number {
+  margin-top: 0.5rem;
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  color: #2b2118;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+
+.cv-download-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.pixel-button {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #c3c0b9;
+  color: #222;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: clamp(8px, 1vw, 12px);
+  cursor: pointer;
+}
+
+.pixel-button:hover {
+  background-color: #ffe599;
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 0 #000;
+}
+
+.pixel-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0 #000;
+}

@@ -1,0 +1,263 @@
+
+:root {
+  --path-height: 20vh;
+}
+.pirata-one-regular {
+  font-family: "Pirata One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* 🚫 prevents scrollbars */
+}
+.game-container { 
+    position: relative; 
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    text-align: center;
+}
+/* Avatar setup */
+.avatar img {
+  position: absolute;
+  bottom: var(--path-height);
+  left: 25%;
+  transform: translateX(-50%);
+  width: 128px;
+  image-rendering: pixelated;
+  z-index: 9;
+}
+#avatar {
+    transition: transform 0.1s; /* smooth flip */
+    image-rendering: pixelated; /* keeps pixels sharp */
+}
+
+#avatar.flipped {
+    transform: scaleX(-1); /* mirror horizontally */
+}
+
+.parallax-layer {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-position: 0 bottom;
+    image-rendering: pixelated;
+}
+
+/* Sky, Hills, Stone, Grass Layers */
+#bg-sky {
+    background-image: url('../assets/background_final.png');
+    z-index: 0;
+    bottom: var(--path-height);
+    height: calc(100vh - var(--path-height)); 
+    background-size: auto 100%; 
+}
+
+#bg-hills {
+    background-image: url('../assets/hills_final.png');
+    z-index: 0;
+    bottom: calc(var(--path-height) - 2px);
+    height: 300px; 
+}
+
+#bg-stone {
+    background-image: url('../assets/stone_path.png');
+    z-index: 1;
+    bottom: 0;
+    top: calc(100% - var(--path-height));   
+    background-position: 0 top; 
+}
+
+#bg-grass {
+    background-image: url('../assets/grass_final.png');
+    z-index: 1; 
+    bottom: 0;
+    height: 300px; 
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: var(--path-height);
+    background: #785C3E; 
+    z-index: 1;
+}
+/* Avatar positioning (already exists) — keep as is */
+
+/* Seagull boss setup */
+.seagull img {
+  position: absolute;
+  bottom: calc(var(--path-height) + 30%);
+  right: 20%;
+  transform: translateX(50%);
+  width: 350px; /* a bit larger than avatar for boss feel */
+  image-rendering: pixelated;
+  z-index: 9;
+  animation: floaty 2.5s ease-in-out infinite;
+  transition: transform 0.2s, opacity 0.5s;
+}
+
+/* Optional subtle floating animation */
+@keyframes floaty {
+  0%, 100% { transform: translateX(50%) translateY(0); }
+  50% { transform: translateX(50%) translateY(-5px); }
+}
+
+/* Boss health bar */
+.boss-health-container {
+  position: absolute;
+  top: 40px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 300px;
+  height: 25px;
+  background: #330000;
+  border: 3px solid white;
+  z-index: 100;
+  text-align: center;
+}
+
+.boss-health-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #ff0033, #ff9900);
+  transition: width 0.3s ease;
+}
+
+.boss-health-text {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: white;
+}
+.ui-icon {
+  position: fixed;
+  top: 15px;        /* left for home, right for sound */
+  width: 70px;
+  height: auto;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.ui-icon:hover {
+  transform: scale(1.1);
+}
+/* home button on the left */
+#home-button {
+  left: 15px;
+}
+
+/* sound button to the right of home button */
+#sound-toggle {
+  left: 100px;  /* 15px margin + 40px width + 10px spacing */
+  top: 10px;
+}
+/* Fight button */
+#fight-btn {
+  position: absolute;
+  bottom: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  border: 3px solid white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s;
+}
+
+#fight-btn:hover {
+  background: white;
+  color: black;
+  transform: translateX(-50%) scale(1.1);
+}
+
+#message-bottle {
+  position: absolute;
+  top: -150px; /* starts above screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  image-rendering: pixelated;
+  z-index: 10;
+  display: none;
+  transition: transform 0.8s ease-out, top 0.8s ease-out;
+}
+
+/* Glow effect when landed */
+#message-bottle.glow {
+  animation: bottleGlow 2s infinite alternate;
+  cursor: pointer;
+}
+
+@keyframes bottleGlow {
+  from { filter: drop-shadow(0 0 4px #00ffcc) brightness(1); }
+  to { filter: drop-shadow(0 0 12px #00ffcc) brightness(1.4); }
+}
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;   /* adjust to your scroll size */
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none; /* disabled until animation is done */
+}
+
+.popup-content {
+  font-family: "Pirata One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  position: absolute;
+  text-align: center;
+  color: #222;
+  z-index: 10;
+  pointer-events: auto;
+  width: 100%;  /* inside scroll */
+  height: 80%;
+  top: px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+
+#scroll-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centers it */
+  width: 400px;   /* adjust as you like */
+  height: 550px;  /* adjust as you like */
+  object-fit: contain;  /* ensures full scroll is visible */
+  image-rendering: pixelated;
+  z-index: 1; /* keep it behind the text */
+}
+
+
+.hidden {
+  display: none;
+}
