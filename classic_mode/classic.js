@@ -46,7 +46,7 @@ const projects = [
     description: '',
     unlocked: false,  // set true if you want them visible immediately
     unlockedImg: '../assets/projects/project1.png',
-    lockedImg: '../assets/projects/locker.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git: false,
     github_link: ""
   },
@@ -56,7 +56,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project3.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git: true,
     github_link:"https://github.com/TayssirGh/Parse2Hire"
   },
@@ -66,7 +66,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project5.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git : true,
     github_link: "https://github.com/TayssirGh/devops-training"
   },
@@ -76,7 +76,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project4.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git: true,
     github_link: "https://github.com/TayssirGh/Histograph"
   },
@@ -86,7 +86,7 @@ const projects = [
     description: 'Mozmoz bash treasure',
     unlocked: true,
     unlockedImg: '../assets/projects/project1.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git: true,
         github_link:"https://github.com/TayssirGh/mozmoz-bash-treasure"
   },
@@ -97,7 +97,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project6.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git : true,
     github_link: "https://github.com/TayssirGh/Hashtable-Visualization"
   },
@@ -107,7 +107,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project2.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git: true,
     github_link: "https://github.com/TayssirGh/mozmoz-puzzle-game"
   },
@@ -117,7 +117,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project7.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git : true,
     github_link: "https://github.com/TayssirGh/UTTT-frontEnd"
   },
@@ -128,7 +128,7 @@ const projects = [
     description: '',
     unlocked: true,
     unlockedImg: '../assets/projects/project8.png',
-    lockedImg: '../assets/projects/locked.png',
+    lockedImg: '../assets/projects/workbook.png',
     has_git : false,
     github_link: "https://github.com/TayssirGh"
   }
@@ -170,7 +170,6 @@ function updateBookPage() {
 
 bookContainer.addEventListener('click', () => {
   if (currentPageIndex === projects.length - 1) {
-    console.log("hello")
     const finalProject = projects[currentPageIndex];
     if (finalProject.id === 'final' && finalProject.github_link) {
       window.open(finalProject.github_link, '_blank');
