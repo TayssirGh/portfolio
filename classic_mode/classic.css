@@ -591,6 +591,105 @@ font-size: 0.8rem;
   transition: opacity 0.2s ease-in-out;
 }
 
+.book-image-1 {
+  width: 70rem;
+  max-width: 90vw;
+  height: auto;
+  image-rendering: pixelated;
+  object-fit: contain;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Title inside the parchment */
+.cert-title {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: 'Press Start 2P', monospace;
+  font-weight: bold;
+  font-size: clamp(14px, 2vw, 24px); /* responsive size */
+  color: #2b2118;
+  text-align: center;
+  letter-spacing: 0.15rem;
+
+  pointer-events: none;
+}
+
+.cert-scroll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cert-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* hide scrollbar */
+  -ms-overflow-style: none;
+}
+.cert-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cert-item {
+  flex: 0 0 auto;
+  margin: 0 1rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.cert-item:hover {
+  transform: scale(1.1);
+}
+
+.cert-item img {
+  width: 20rem;
+  height: 8rem;
+  image-rendering: pixelated;
+  border: 3px solid #2b2118;
+  border-radius: 8px;
+  background-color: #fdf3d0;
+}
+
+/* Hover name under the scroll area */
+.cert-name {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(10px, 1.4vw, 16px);
+  color: #2b2118;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* Scroll arrows */
+.scroll-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #2b2118;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+.scroll-btn:hover {
+  transform: scale(1.2);
+}
+
+
+
 /* Left and right arrows */
 .book-arrow {
   cursor: pointer;

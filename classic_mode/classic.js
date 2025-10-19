@@ -203,10 +203,94 @@ bookRight.addEventListener('click', () => {
 });
 
 // Optional keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowLeft') bookLeft.click();
-  if (e.key === 'ArrowRight') bookRight.click();
+// document.addEventListener('keydown', (e) => {
+//   if (e.key === 'ArrowLeft') bookLeft.click();
+//   if (e.key === 'ArrowRight') bookRight.click();
+// });
+
+
+// ----------certificates-------
+const certificates = [
+  {
+    name: "AZ-900: Azure Fundamentals (Microsoft)",
+    image: "../assets/certs/Azure.png",
+    link: "https://drive.google.com/drive/u/1/folders/1cw93Dfqwc--G9TQJVvt4xp6-oCoyZMcM"
+  },
+  {
+    name: "TOEIC (Amideast)",
+    image: "../assets/certs/Toiec.png",
+    link: "https://drive.google.com/drive/u/1/folders/1HkSiuPp_SSgCbSzePlHSCu7L_eze_-vQ"
+  },
+  {
+    name: "Linux Foundation, System admin (kodekloud)",
+    image: "../assets/certs/linux_foundation.png",
+    link: "https://drive.google.com/drive/u/1/folders/1BwIoTKy4fwZpGvzPGlB6eQ-4XaP7HB81"
+  },
+  {
+    name: "Red Hat OpenShift Development I- Introduction to Containers with Podman (RedHat)",
+    image: "../assets/certs/redhat.png",
+    link: "https://drive.google.com/drive/u/1/folders/1Nla8PUA9RQ9YPy9YWgy0jJGf6qAunx7h"
+  },
+  {
+    name: "Advanced Bash scripting (kodekloud)",
+    image: "../assets/certs/bash.png",
+    link: "https://drive.google.com/drive/u/1/folders/1Q3U9dcwx5U3S3ajSDkUbXTKIjw5FSfzn"
+  },
+  {
+    name: "Pulumi essentials (kodekloud)",
+    image: "../assets/certs/Pulumi.png",
+    link: "https://drive.google.com/drive/u/1/folders/12fFWAPGuW0LKMp3g_3T3EBuLwqW8e8zu"
+  },
+  {
+    name: "Leetcode 50 days badge (leetcode)",
+    image: "../assets/certs/leetcodebadge.png",
+    link: "https://leetcode.com/u/TayssirGh"
+  },
+  {
+    name: "Docker Essentials",
+    image: "../assets/certs/docker.png",
+    link: "https://drive.google.com/drive/u/1/folders/1xg76HfF7lERiGUvCH9nKJTuUso_vrehr"
+  }
+];
+
+const certTrack = document.getElementById('certTrack');
+const certName = document.getElementById('certName');
+const defaultText = "Hover a badge to see its title";
+certName.textContent = defaultText;
+certName.style.opacity = 1;
+
+
+certificates.forEach(cert => {
+  const item = document.createElement('div');
+  item.classList.add('cert-item');
+  item.innerHTML = `<img src="${cert.image}" alt="${cert.name}">`;
+
+  // Hover: show cert name
+  item.addEventListener('mouseenter', () => {
+    certName.textContent = cert.name;
+  });
+
+  // Leave: restore default text
+  item.addEventListener('mouseleave', () => {
+    certName.textContent = defaultText;
+  });
+
+  // Click: open link
+  item.addEventListener('click', () => {
+    window.open(cert.link, '_blank');
+  });
+
+  certTrack.appendChild(item);
 });
+
+// Scroll buttons
+document.querySelector('.left-btn').addEventListener('click', () => {
+  certTrack.scrollBy({ left: -200, behavior: 'smooth' });
+});
+document.querySelector('.right-btn').addEventListener('click', () => {
+  certTrack.scrollBy({ left: 200, behavior: 'smooth' });
+});
+
 
 // -------- Background Music --------
 const bgMusic = document.getElementById('bg-music');
